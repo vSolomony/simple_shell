@@ -22,5 +22,7 @@ void check_input(char *line);
 void to_print(const char *the_forma);
 void to_exec_command(char *args[]);
 char *to_read_command(void);
+void handle_exit(void);
+void handle_env(void);
 
 #endif
