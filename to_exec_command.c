@@ -2,7 +2,6 @@
 /**
  * to_exec_command - a function that execute commands
  * @the_command: a pointer of commands strings
- * @args: the arguments that will be passed to execve
  * Return: the exit status
 */
 int to_exec_command(const char *the_command)
