@@ -8,11 +8,12 @@
 */
 char *_strncpy(char *desta, const char *the_source, size_t num)
 {
+	char *ptr = desta;
+
 	if (desta == NULL)
 	{
 		return (NULL);
 	}
-	char *ptr = desta;
 
 	while (*the_source && num--)
 	{

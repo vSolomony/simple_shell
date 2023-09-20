@@ -7,29 +7,27 @@
 */
 char *_strtok(char *the_str, const char *delm)
 {
-	static char *ptr_bank;
+	static char ptr_bank[128] = "";
 	size_t len;
-
-	*ptr_bank = NULL;
+	char *the_token;
 
 	if (the_str == NULL)
 	{
 		the_str = ptr_bank;
 	}
 
-	size_t len = _strcspn(the_str, delm);
+	len = _strcspn(the_str, delm);
 
 	if (len == 0)
 	{
 		return (NULL);
 	}
 
-	char *the_token = malloc(len + 1);
-
+	the_token = malloc(len + 1);
 	_strncpy(the_token, the_str, len);
 	the_token[len] = '\0';
 
-	ptr_bank = the_str + len;
+	_strncpy(ptr_bank, the_str + len + 1, sizeof(ptr_bank));
 
 	return (the_token);
 }

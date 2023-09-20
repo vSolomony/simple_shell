@@ -3,8 +3,9 @@
  * to_read_command - function that read the commands
  * @the_command: pointer of command string
  * @the_size: the size of string
+ * Return: 1 in sucess 0 in fail
 */
-void to_read_command(char *the_command, size_t the_size)
+int to_read_command(char *the_command, size_t the_size)
 {
 	int value;
 
@@ -20,8 +21,10 @@ void to_read_command(char *the_command, size_t the_size)
 			to_print("Your input has an Error!");
 			exit(EXIT_FAILURE);
 		}
+		return (0);
 	}
 
 	value = _strcspn(the_command, "\n");
 	the_command[value] = '\0';
+	return (1);
 }
