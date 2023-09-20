@@ -9,6 +9,7 @@ int to_exec_command(const char *the_command)
 {
 	pid_t pid = fork();
 	int status;
+	char *const argv[] = {NULL};
 
 	if (pid < 0)
 	{
@@ -17,7 +18,7 @@ int to_exec_command(const char *the_command)
 	}
 	else if (pid == 0)
 	{
-		if (execve(the_command, NULL, NULL) == -1)
+		if (execve(the_command, argv, NULL) == -1)
 		{
 			perror("Could'nt use execve!");
 			exit(EXIT_FAILURE);
