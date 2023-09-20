@@ -1,13 +1,13 @@
 #include "shell.h"
 /**
- * check_input - to check the input and tokenaise
+ * check_input - to check the input and tokenize
  * @line: the string line
  * Return: nothing
 */
 void check_input(char *line)
 {
 	char *args[128];
-	char *the_token = _strtok(line, " ");
+	char *token = strtok(line, " ");
 	int arg_index = 0;
 
 	if (_strlen(line) == 0)
@@ -16,15 +16,15 @@ void check_input(char *line)
 		return;
 	}
 
-	while (the_token != NULL)
+	while (token != NULL)
 	{
-		args[arg_index] = the_token;
+		args[arg_index] = token;
 		arg_index++;
-		the_token = _strtok(NULL, " ");
+		token = strtok(NULL, " ");
 	}
 
 	args[arg_index] = NULL;
 
-	to_exec_command((const char **)args);
+	to_exec_command(args);
 	free(line);
 }

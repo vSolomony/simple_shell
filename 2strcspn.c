@@ -5,27 +5,23 @@
  * @str_2: is pointer of second string
  * Return: the total
 */
-size_t _strcspn(const char *str_1, const char *str_2)
+char *_strcspn(const char *str_1, const char *str_2)
 {
-	size_t total = 0;
+	const char *ptr1, *ptr2;
 
-	while (*str_1 != '\0')
+	ptr1 = str_1;
+	while (*ptr1)
 	{
-		const char *bank = str_2;
-
-		while (*bank != '\0')
+		ptr2 = str_2;
+		while (*ptr2)
 		{
-			if (*str_1 == *bank)
+			if (*ptr1 == *ptr2)
 			{
-				return (total);
+				return ((char *)ptr1);
 			}
-
-			bank++;
+			ptr2++;
 		}
-		str_1++;
-		total++;
+		ptr1++;
 	}
-
-	return (total);
+	return ((char *)ptr1);
 }
-

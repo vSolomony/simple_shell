@@ -8,6 +8,7 @@ void interactive_SHELLMODE(void)
 	while (1)
 	{
 		char *line = to_read_command();
+
 		check_input(line);
 	}
 }

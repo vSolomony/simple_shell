@@ -23,18 +23,18 @@ void noninteractive_SHELLMODE(void)
 		{
 			continue;
 		}
-		token = _strtok(line, " ");
+		token = strtok(line, " ");
 		arg_index = 0;
 
 		while (token != NULL)
 		{
 			args[arg_index] = token;
 			arg_index++;
-			token = _strtok(NULL, " ");
+			token = strtok(NULL, " ");
 		}
 
 		args[arg_index] = NULL;
-		to_exec_command((const char **)args);
+		to_exec_command(args);
 	}
 
 	free(line);
