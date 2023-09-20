@@ -17,4 +17,6 @@ int to_read_command(char *the_command, size_t the_size);
 int _strcmp(const char *str_1, const char *str_2);
 char *_strtok(char *the_str, const char *delm);
 char *_strncpy(char *desta, const char *the_source, size_t num);
+void noninteractive_SHELLMODE(void);
+void interactive_SHELLMODE(void);
 #endif
