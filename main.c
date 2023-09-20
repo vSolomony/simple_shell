@@ -3,7 +3,7 @@
  * main - entry level
  * Return: 0 (Sucess)
 */
-int main()
+int main(void)
 {
 	if (isatty(STDIN_FILENO) == 1)
 	{
