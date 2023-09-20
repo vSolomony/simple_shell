@@ -7,15 +7,15 @@
 void check_input(char *line)
 {
 	char *args[128];
-	char *token = strtok(line, " ");
+	char *token;
 	int arg_index = 0;
 
-	if (_strlen(line) == 0)
+	if (line == NULL)
 	{
-		free(line);
 		return;
 	}
 
+	token = strtok(line, " ");
 	while (token != NULL)
 	{
 		args[arg_index] = token;
@@ -25,6 +25,10 @@ void check_input(char *line)
 
 	args[arg_index] = NULL;
 
-	to_exec_command(args);
+	if (arg_index > 0)
+	{
+		to_exec_command(args);
+	}
+
 	free(line);
 }

@@ -5,10 +5,15 @@
 */
 void interactive_SHELLMODE(void)
 {
+	char *line;
+
 	while (1)
 	{
-		char *line = to_read_command();
-
-		check_input(line);
+		to_print("Solomony_Shell$ ");
+		line = to_read_command();
+		if (line != NULL)
+		{
+			check_input(line);
+		}
 	}
 }

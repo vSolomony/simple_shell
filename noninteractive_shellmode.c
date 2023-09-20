@@ -5,10 +5,10 @@
 */
 void noninteractive_SHELLMODE(void)
 {
-	char *args[128];
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t to_read;
+	char *args[128];
 	char *token;
 	int arg_index;
 
@@ -19,22 +19,25 @@ void noninteractive_SHELLMODE(void)
 			line[to_read - 1] = '\0';
 		}
 
-		if (_strlen(line) == 0)
+		if (_strlen(line) > 0)
 		{
-			continue;
-		}
-		token = strtok(line, " ");
-		arg_index = 0;
+			token = strtok(line, " ");
+			arg_index = 0;
 
-		while (token != NULL)
-		{
-			args[arg_index] = token;
-			arg_index++;
-			token = strtok(NULL, " ");
-		}
+			while (token != NULL)
+			{
+				args[arg_index] = token;
+				arg_index++;
+				token = strtok(NULL, " ");
+			}
 
-		args[arg_index] = NULL;
-		to_exec_command(args);
+			args[arg_index] = NULL;
+
+			if (arg_index > 0)
+			{
+				to_exec_command(args);
+			}
+		}
 	}
 
 	free(line);
