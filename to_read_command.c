@@ -1,30 +1,37 @@
 #include "shell.h"
 /**
  * to_read_command - function that read the commands
- * @the_command: pointer of command string
- * @the_size: the size of string
- * Return: 1 in sucess 0 in fail
+ * Return: the line
 */
-int to_read_command(char *the_command, size_t the_size)
+char *to_read_command(void)
 {
-	int value;
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t to_read;
 
-	if (_fgets(the_command, the_size, 0) == NULL)
+	to_print("Solomony_Shell$ ");
+	to_read = getline(&line, &len, stdin);
+
+	if (to_read == -1)
 	{
 		if (feof(stdin))
 		{
 			to_print("\n");
+			free(line);
 			exit(EXIT_SUCCESS);
 		}
 		else
 		{
-			to_print("Your input has an Error!");
+			perror("to get line");
+			free(line);
 			exit(EXIT_FAILURE);
 		}
-		return (0);
 	}
 
-	value = _strcspn(the_command, "\n");
-	the_command[value] = '\0';
-	return (1);
+	if (line[to_read - 1] == '\n')
+	{
+		line[to_read - 1] = '\0';
+	}
+
+	return (line);
 }

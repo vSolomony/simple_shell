@@ -1,22 +1,41 @@
 #include "shell.h"
 /**
- * noninteractive_SHELLMODE - the non interactive mode
+ * noninteractive_SHELLMODE - the noninteractive mode in shell
  * Return: nothing
 */
 void noninteractive_SHELLMODE(void)
 {
-	char command[128];
+	char *args[128];
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t to_read;
+	char *token;
+	int arg_index;
 
-	while (1)
+	while ((to_read = getline(&line, &len, stdin)) != -1)
 	{
-		if (to_read_command(command, sizeof(command)) == 0)
+		if (line[to_read - 1] == '\n')
 		{
-			break;
+			line[to_read - 1] = '\0';
 		}
 
-		if (to_exec_command(command) == -1)
+		if (_strlen(line) == 0)
 		{
-			to_print("There's no such command!!\n");
+			continue;
 		}
+		token = _strtok(line, " ");
+		arg_index = 0;
+
+		while (token != NULL)
+		{
+			args[arg_index] = token;
+			arg_index++;
+			token = _strtok(NULL, " ");
+		}
+
+		args[arg_index] = NULL;
+		to_exec_command((const char **)args);
 	}
+
+	free(line);
 }

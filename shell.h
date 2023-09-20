@@ -7,16 +7,19 @@
 #include <strings.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-/*functions*/
+/*strings*/
 size_t _strlen(const char *str);
-void to_print(const char *the_forma);
-char *_fgets(char *str_t, int size_t, int fi_des);
-size_t _strcspn(const char *str_1, const char *str_2);
-int to_exec_command(const char *the_command);
-int to_read_command(char *the_command, size_t the_size);
-int _strcmp(const char *str_1, const char *str_2);
-char *_strtok(char *the_str, const char *delm);
 char *_strncpy(char *desta, const char *the_source, size_t num);
-void noninteractive_SHELLMODE(void);
+int _strcmp(const char *str_1, const char *str_2);
+size_t _strcspn(const char *str_1, const char *str_2);
+char *_strtok(char *the_str, const char *delm);
+/*interactive & non interactive*/
 void interactive_SHELLMODE(void);
+void noninteractive_SHELLMODE(void);
+/*other functions*/
+void check_input(char *line);
+void to_print(const char *the_forma);
+void to_exec_command(const char *args[]);
+char *to_read_command(void);
+
 #endif

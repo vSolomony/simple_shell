@@ -1,25 +1,24 @@
 #include "shell.h"
 /**
  * to_exec_command - a function that execute commands
- * @the_command: a pointer of commands strings
- * Return: the exit status
+ * @args: to handle args
+ * Return: 0 Sucess
 */
-int to_exec_command(const char *the_command)
+void to_exec_command(const char *args[])
 {
 	pid_t pid = fork();
 	int status;
-	char *const argv[] = {NULL};
 
 	if (pid < 0)
 	{
-		perror("faild to load fork");
+		perror("fork has failed");
 		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
 	{
-		if (execve(the_command, argv, NULL) == -1)
+		if (execve(args[0], (char *const *)args, NULL) == -1)
 		{
-			perror("Could'nt use execve!");
+			perror("execve has failed");
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -27,10 +26,8 @@ int to_exec_command(const char *the_command)
 	{
 		if (waitpid(pid, &status, 0) == -1)
 		{
-			perror("waiting the child");
+			perror("child has not arrived");
 			exit(EXIT_FAILURE);
 		}
-		return (status);
 	}
-	return (0);
 }
