@@ -5,7 +5,7 @@
  * @args: the arguments that will be passed to execve
  * Return: the exit status
 */
-int to_exec_command(const char *the_command, char *const args[])
+int to_exec_command(const char *the_command)
 {
 	pid_t pid = fork();
 	int status;
@@ -17,7 +17,7 @@ int to_exec_command(const char *the_command, char *const args[])
 	}
 	else if (pid == 0)
 	{
-		if (execve(the_command, args, NULL) == -1)
+		if (execve(the_command, NULL, NULL) == -1)
 		{
 			perror("Could'nt use execve!");
 			exit(EXIT_FAILURE);

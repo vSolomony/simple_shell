@@ -6,8 +6,6 @@
 int main(void)
 {
 	char the_command[128];
-	char *const args[] = {NULL};
-	int status;
 
 	while (1)
 	{
@@ -17,8 +15,7 @@ int main(void)
 			to_print("\n");
 			break;
 		}
-		status = to_exec_command(the_command, args);
-		if (status == -1)
+		if (to_exec_command(the_command) == -1)
 		{
 			to_print("there's no command!!");
 		}
